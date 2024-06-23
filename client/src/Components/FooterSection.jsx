@@ -4,12 +4,13 @@ import XIcon from "@mui/icons-material/X";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGooglePlay, faApple } from "@fortawesome/free-brands-svg-icons";
 import { NavLink } from "react-router-dom";
+
 const FooterSection = () => {
   return (
     <div className="w-full h-30  flex flex-col items-center justify-center footer p-7 bg-black text-white">
       <div className="w-[80%] h-full flex items-center justify-between">
         <ol className="flex items-center gap-10 font-bold">
-          <li>BLOG</li>
+          <NavLink to="/blog">BLOG</NavLink>
           <li>EXPLORE</li>
           <li>KNOWMORE</li>
           <NavLink to="/about">ABOUT</NavLink>

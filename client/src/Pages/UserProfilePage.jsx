@@ -7,8 +7,11 @@ import XIcon from "@mui/icons-material/X";
 import MessageIcon from "@mui/icons-material/Message";
 import ShareIcon from "@mui/icons-material/Share";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
+import { useSelector } from "react-redux";
 
 const UserProfilePage = () => {
+  const userData = useSelector((state) => state.userData);
+  console.log(" this is from profile page ", userData);
   const skillData = ["web Developer", "html", "CSS", "React", "Next.js"];
   const profileFeatureLinks = [
     "Skills",
@@ -22,13 +25,13 @@ const UserProfilePage = () => {
   );
   return (
     <>
-      <div className="w-full bg-green-400  pl-20 ">
-        <div className="w-[94%]  py-10 flex">
+      <div className="w-full   pl-20 flex items-center justify-center ">
+        <div className="w-[94%] h-[100vh]  py-10 flex   ">
           <NavLink to="/find-a-job">
             <KeyboardBackspaceIcon />
           </NavLink>
           {/* left porfile image div */}
-          <div className="w-[30vw]   flex flex-col items-center">
+          <div className="w-[45vw]   flex flex-col items-center justify-center ">
             <div className="w-[15rem] h-[15rem] bg-yellow-300 rounded-full flex items-center justify-center">
               <img src={userImg} alt="this is user umage" />
             </div>
@@ -37,13 +40,19 @@ const UserProfilePage = () => {
             </div>
             <div>
               <LocationOnOutlinedIcon />
-              <span>Bhilai, C.G</span>
+              <span>
+                {userData[1].userinfodata.city},{" "}
+                {userData[1].userinfodata.country}
+              </span>
             </div>
           </div>
           {/* /profile right top div */}
-          <div className="w-[70%]  h-30 flex flex-col gap-y-3 items-start justify-center">
+          <div className="w-[30%]  h-30 flex flex-col gap-y-3 items-start justify-center">
             <h1 className="font-bold text-4xl">
-              user name{" "}
+              {userData[1].userinfodata.firstName}
+              <span> </span>
+              {userData[1].userinfodata.lastName}
+              {/* Check if userData exists before accessing userName */}
               <sup>
                 <VerifiedOutlinedIcon />
               </sup>
@@ -69,16 +78,20 @@ const UserProfilePage = () => {
             <div className="flex gap-5">
               <div>
                 <h6 className="text-sm">Role</h6>
-                <h5 className="text-lg font-semibold">Designer</h5>
+                <h5 className="text-lg font-semibold">
+                  {userData[1].userinfodata.DomainOfInterest[0]}
+                </h5>
               </div>
               <div>
                 <h6 className="text-sm">Experience</h6>
-                <h5 className="text-lg font-semibold">10 Year</h5>
+                <h5 className="text-lg font-semibold">
+                  {userData[1].userinfodata.experience}
+                </h5>
               </div>
             </div>
             <h5 className="">My Skills</h5>
             <div className="w-[60vw] flex gap-3">
-              {skillData.map((skill, index) => (
+              {userData[1].userinfodata.skills.map((skill, index) => (
                 <span
                   key={index}
                   className="w-fit h-fit px-3 py-1  border rounded-2xl"
@@ -91,7 +104,7 @@ const UserProfilePage = () => {
         </div>
       </div>
       {/* center div which shows the list of features which we have to show in the profile page */}
-      <div className=" w-full bg-cyan-400 flex items-center justify-center text-xl py-5">
+      {/* <div className=" w-full  bg-cyan-400 flex items-center justify-center text-xl py-5">
         <ul className="flex gap-4">
           {profileFeatureLinks.map((feature, index) => (
             <li
@@ -103,12 +116,20 @@ const UserProfilePage = () => {
             </li>
           ))}
         </ul>
-      </div>
-      <div className="w-full bg-red-400 ">
-        <div className="w-[30vw] p-[5vw] bg-green-400">
+      </div> */}
+      {/* <div className="w-full flex  bg-red-400 ">
+        <div className="w-[30vw] p-[5vw] h-64 bg-green-900">
           <h3 className="text-3xl">{profileFeatureLinksElement}</h3>
         </div>
-      </div>
+        <div className="bg-blue-400 w-[70vw] h-64 p-10">
+          {profileFeatureLinksElement === "Skills" &&
+            userData[1].userinfodata.skills.map((item, index) => (
+              <span key={index} className="p-5 uppercase">
+                {item}
+              </span>
+            ))}
+        </div>
+      </div> */}
     </>
   );
 };

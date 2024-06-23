@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const Login = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -31,12 +34,14 @@ const Login = () => {
         phoneNumber: "",
         password: "",
       });
+      notify();
+
       // Redirect user to home page or perform any other action upon successful registration
     } catch (error) {
       console.error("Error during registration:", error);
     }
   };
-
+  const notify = () => toast("User registration successful 👍");
   return (
     <div>
       <section className="bg-red-50 shadow-2xl min-h-screen flex items-center justify-center">
@@ -114,6 +119,7 @@ const Login = () => {
           </div>
         </div>
       </section>
+      {/* <ToastContainer /> */}
     </div>
   );
 };

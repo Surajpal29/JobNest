@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { addDataToStore } from "../features/storeSlice";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+
   const [formData, setFormData] = useState({
     userName: "",
     password: "",
@@ -22,7 +28,12 @@ const Login = () => {
         formData
       );
 
-      console.log(response.data);
+      // console.log(response.data);
+
+      const userData = response.data;
+      console.log(userData);
+      dispatch(addDataToStore(userData));
+
       setFormData({
         userName: "",
         password: "",
@@ -30,6 +41,7 @@ const Login = () => {
 
       if (response.status === 200) {
         navigate("/");
+        notify();
       }
     } catch (error) {
       if (error.response && error.response.status === 400) {
@@ -44,6 +56,7 @@ const Login = () => {
     }
   };
 
+  const notify = () => toast("loged in successfully");
   return (
     <div>
       <section className="bg-red-50 shadow-2xl min-h-screen flex items-center justify-center">

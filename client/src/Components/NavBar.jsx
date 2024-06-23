@@ -31,12 +31,12 @@ const NavBar = () => {
               Find a Job
             </NavLink>
           </li>
-          <li className="cursor-pointer hover:scale-105 transition ease-in-out duration-300">
+          {/* <li className="cursor-pointer hover:scale-105 transition ease-in-out duration-300">
             Find Talent
-          </li>
-          <li className="cursor-pointer hover:scale-105 transition ease-in-out duration-300">
+          </li> */}
+          {/* <li className="cursor-pointer hover:scale-105 transition ease-in-out duration-300">
             Features
-          </li>
+          </li> */}
           <li className="cursor-pointer hover:scale-105 transition ease-in-out duration-300">
             <NavLink
               to="/about"

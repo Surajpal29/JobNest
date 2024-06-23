@@ -10,7 +10,10 @@ import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined
 import GroupIcon from "@mui/icons-material/Group";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useSelector } from "react-redux";
+
 const FindAJobPage = () => {
+  const userData = useSelector((state) => state.userData);
   const id = useId();
   const cardData = [
     {
@@ -167,8 +170,16 @@ const FindAJobPage = () => {
             <CheckCircleIcon className="text-blue-800 absolute right-0 " />
           </div>
           <div className="absolute bottom-3 flex flex-col items-center justify-center">
-            <h4 className="font-bold text-lg">user name</h4>
-            <h6 className="mb-2">user skills</h6>
+            <h4 className="font-bold text-lg">
+              {userData[1].userinfodata.firstName}
+              <span> </span>
+              {userData[1].userinfodata.lastName}
+            </h4>
+            <h6 className="mb-2 flex gap-1">
+              {userData[1].userinfodata.skills.map((item) => (
+                <h6>{item}</h6>
+              ))}
+            </h6>
             <button className="w-fit h-fit px-3 py-1 border border-white rounded-xl">
               <Link to="/profile">view profile</Link>
             </button>
@@ -177,11 +188,11 @@ const FindAJobPage = () => {
       </div>
       <div className="flex">
         {/* bottom left div */}
-        <div className="w-[74vw]  border my-5 pt-5  pl-10 ml-10 rounded-lg">
+        <div className="w-[94vw]  border my-5 pt-5  pl-10 ml-10 rounded-lg">
           <h4 className="font-bold text-2xl mb-3">Recommended Jobs</h4>
           {/* card */}
           <div className=" w-full flex gap-1 flex-wrap ">
-            {data.slice(0, 8).map((data, index) => (
+            {data.slice(0, 15).map((data, index) => (
               <div
                 key={index}
                 className="w-[17.5vw]   bg-cyan-600 border-2 rounded-lg overflow-hidden pt-3 pl-3"
@@ -250,9 +261,9 @@ const FindAJobPage = () => {
           </div>
         </div>
         {/* bottom right div */}
-        <div className="w-[19vw] mr-10 mt-5 ml-5 rounded-lg p-5 h-full bg-cyan-100">
+        {/* <div className="w-[19vw] mr-10 mt-5 ml-5 rounded-lg p-5 h-full bg-cyan-100">
           checklist
-        </div>
+        </div> */}
       </div>
     </>
   );
