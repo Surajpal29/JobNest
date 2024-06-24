@@ -10,7 +10,7 @@ const JobOppurtunity = () => {
       companyLogo: "logo",
       companyName: "CompanyName",
       JobTitle: "Product Designer",
-      skillsRequired: ["Adobe xd", "Figma", "Canva"],
+      skillsRequired: ["Adobe ", "Figma", "Canva"],
       postedDate: "posted on 20/4/24",
       PaymentInRupees: 5000,
     },
